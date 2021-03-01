@@ -1,65 +1,49 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Link from "next/link";
+import ImagePanel from "../components/imagepanel";
+import ContentPanel from "../components/contentpanel";
+import { BiInfoCircle } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Home</title>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <motion.div
+        initial="initial"
+        animate="animate"
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-row h-screen"
+      >
+        <div className="w-1/2">
+          <ImagePanel image="waterfall.jpg" />
         </div>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+        <div className="w-1/2 flex flex-col justify-center items-start">
+          <ContentPanel>
+            <h1 className="text-6xl font-bold mb-8">This is a title.</h1>
+
+            <p className="text-lg mb-8">
+              The National Police Immigration Service[1] (NPIS) (Norwegian:
+              Politiets utlendingsenhet) is the unit in the Norwegian Police
+              Service for handling immigration cases. The NPIS's main tasks are
+              to register asylum seekers who come to Norway and to establish
+              their identity, forcibly return people without lawful residence
+              and to run the police immigration detention centre.
+            </p>
+
+            <Link href="/about">
+              <a className="bg-gray-100 text-lg px-8 py-3 font-bold flex items-center shadow duration-400 hover:bg-blue-400 hover:text-white">
+                <BiInfoCircle className="mr-2 text-xl" /> Find out more
+              </a>
+            </Link>
+          </ContentPanel>
+        </div>
+      </motion.div>
+    </>
+  );
 }
